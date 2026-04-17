@@ -36,13 +36,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Show Inputs
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Print Repo Details
         run: |
-          ls -la
+          echo "Repository Name : $GITHUB_REPOSITORY"
+          echo "Branch Name     : $GITHUB_REF_NAME"
+          echo "Commit ID       : $GITHUB_SHA"
+          echo "Actor Name      : $GITHUB_ACTOR"
+          echo "Workflow Name   : $GITHUB_WORKFLOW"
+          echo "Run Number      : $GITHUB_RUN_NUMBER"
+          echo "Workspace Path  : $GITHUB_WORKSPACE"
+
+      - name: Show User Inputs
+        run: |
           echo "Environment : ${{ github.event.inputs.environment }}"
           echo "Version     : ${{ github.event.inputs.version }}"
           echo "Service     : ${{ github.event.inputs.service }}"
           echo "Action      : ${{ github.event.inputs.actiontype }}"
 
-      - name: Dummy Success
-        run: ls
+      - name: Show Repo Files
+        run: |
+          pwd
+          ls -la
