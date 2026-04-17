@@ -38,6 +38,7 @@ jobs:
     steps:
       - name: Show Inputs
         run: |
+          ls -la
           echo "Environment : ${{ github.event.inputs.environment }}"
           echo "Version     : ${{ github.event.inputs.version }}"
           echo "Service     : ${{ github.event.inputs.service }}"
