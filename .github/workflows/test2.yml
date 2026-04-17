@@ -45,4 +45,4 @@ jobs:
           echo "Action      : ${{ github.event.inputs.actiontype }}"
 
       - name: Dummy Success
-        run: echo "Workflow completed"
+        run: ls
