@@ -1,0 +1,47 @@
+name: Manual Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select Environment"
+        required: true
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
+
+      version:
+        description: "Enter Version"
+        required: true
+        default: "1.0.0"
+
+      service:
+        description: "Enter Service Name"
+        required: true
+        default: "my-app"
+
+      actiontype:
+        description: "Choose Action"
+        required: true
+        type: choice
+        options:
+          - deploy
+          - restart
+          - rollback
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Inputs
+        run: |
+          echo "Environment : ${{ github.event.inputs.environment }}"
+          echo "Version     : ${{ github.event.inputs.version }}"
+          echo "Service     : ${{ github.event.inputs.service }}"
+          echo "Action      : ${{ github.event.inputs.actiontype }}"
+
+      - name: Dummy Success
+        run: echo "Workflow completed"
